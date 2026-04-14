@@ -1,6 +1,6 @@
 [project]
 name = "stackprinter"
-version = "0.2.12"
+version = "0.2.13"
 description = "Debug-friendly stack traces, with variable values and semantic highlighting"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -25,7 +25,7 @@ dependencies = []
 dev = [
     "pytest",
     "numpy",
-    "flake8",
+    "ruff",
 ]
 
 [build-system]
@@ -35,3 +35,12 @@ build-backend = "uv_build"
 [tool.uv.build-backend]
 module-name = "stackprinter"
 module-root = ""
+
+[tool.ruff]
+target-version = "py38"
+
+[tool.ruff.lint]
+# Match the pre-ruff flake8 gate: syntax errors and undefined names only.
+# Broader rulesets would light up unrelated pre-existing violations that
+# are out of scope for the ARE-2675 fix.
+select = ["E9", "F63", "F7", "F82"]

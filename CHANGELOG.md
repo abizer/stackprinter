@@ -1,7 +1,13 @@
-# Unreleased
+# 0.2.13 - April 14, 2026
 
 ## Fixed
 - Python 3.12+ compatibility: `tb.tb_lineno` and `frame.f_lineno` can now return `None` when an instruction has no line mapping (e.g. at some async suspension points or on synthetic RESUME/CACHE opcodes). `extraction.get_info` now substitutes `frame.f_code.co_firstlineno` in that case instead of crashing with `AssertionError` in `source_inspection.annotate`.
+
+## Changed
+- `source_inspection.annotate` now raises `TypeError` instead of `assert isinstance(...)` for bad input types, so the check is still enforced when Python is run under `-O`.
+- Packaging migrated from `setup.py` to `pyproject.toml` (PEP 621) using the `uv_build` backend; the installed wheel layout is unchanged.
+- CI test matrix extended to Python 3.13 and 3.14.
+- CI switched from `actions/setup-python` + `pip` to `astral-sh/setup-uv` + `uv sync`, and from `flake8` to `ruff` for linting.
 
 # 0.2.8 - August 25, 2022
 

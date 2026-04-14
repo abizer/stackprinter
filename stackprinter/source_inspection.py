@@ -58,9 +58,12 @@ def annotate(source_lines, line_offset=0, lineno=0, max_line=2**15):
     if not source_lines:
         return {}, {}, {}, [], lineno
 
-    assert isinstance(line_offset, int)
-    assert isinstance(lineno, int)
-    assert isinstance(max_line, int)
+    for name, value in (("line_offset", line_offset),
+                        ("lineno", lineno),
+                        ("max_line", max_line)):
+        if not isinstance(value, int):
+            raise TypeError(
+                "annotate() expected %s to be an int, got %r" % (name, value))
 
     source_lines, lineno_corrections = join_broken_lines(source_lines)
     lineno += lineno_corrections[lineno - line_offset]

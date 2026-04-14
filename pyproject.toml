@@ -1,0 +1,46 @@
+[project]
+name = "stackprinter"
+version = "0.2.13"
+description = "Debug-friendly stack traces, with variable values and semantic highlighting"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+license-files = ["LICENSE.txt"]
+authors = [{ name = "cknd", email = "ck-github@mailbox.org" }]
+urls = { Homepage = "https://github.com/cknd/stackprinter" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Operating System :: OS Independent",
+]
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "numpy",
+    "ruff",
+]
+
+[build-system]
+requires = ["uv_build>=0.9,<0.10"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "stackprinter"
+module-root = ""
+
+[tool.ruff]
+target-version = "py38"
+
+[tool.ruff.lint]
+# Match the pre-ruff flake8 gate: syntax errors and undefined names only.
+# Broader rulesets would light up unrelated pre-existing violations that
+# are out of scope for the ARE-2675 fix.
+select = ["E9", "F63", "F7", "F82"]

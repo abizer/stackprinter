@@ -1,3 +1,8 @@
+# Unreleased
+
+## Fixed
+- Python 3.12+ compatibility: `tb.tb_lineno` and `frame.f_lineno` can now return `None` when an instruction has no line mapping (e.g. at some async suspension points or on synthetic RESUME/CACHE opcodes). `extraction.get_info` now substitutes `frame.f_code.co_firstlineno` in that case instead of crashing with `AssertionError` in `source_inspection.annotate`.
+
 # 0.2.8 - August 25, 2022
 
 ## Fixed

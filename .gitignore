@@ -8,3 +8,6 @@ dist/
 
 .venv*/
 .pytest_cache/
+
+# Library — dev-only lockfile, not pinned for consumers.
+uv.lock
